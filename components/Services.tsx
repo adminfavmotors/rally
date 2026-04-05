@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Settings2, Users, Wrench } from "lucide-react";
+import SplitText from "@/components/SplitText";
 
 const viewport = { once: true, amount: 0.2 };
 
@@ -48,9 +49,7 @@ export default function Services() {
               </p>
             </div>
             <h2 className="mt-6 font-display text-[clamp(48px,6vw,88px)] font-black uppercase leading-[0.9]">
-              Nasze
-              <br />
-              Usługi
+              <SplitText text="Nasze Usługi" stagger={0.1} delay={0.1} />
             </h2>
           </div>
 
@@ -83,8 +82,12 @@ export default function Services() {
 
                 <Icon className="mb-6 h-10 w-10 text-red" strokeWidth={1.6} />
 
-                <h3 className="whitespace-pre-line font-display text-[24px] font-bold uppercase tracking-[0.05em] text-white">
-                  {service.title}
+                <h3 className="font-display text-[24px] font-bold uppercase tracking-[0.05em] text-white">
+                  <SplitText
+                    text={service.title.replace("\n", " ")}
+                    delay={index * 0.1}
+                    stagger={0.08}
+                  />
                 </h3>
 
                 <p className="mt-5 text-[14px] font-light leading-[1.7] text-white/50">

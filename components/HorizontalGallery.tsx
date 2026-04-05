@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const PHOTOS = [
   { label: "Mitsubishi Lancer Evo X", tag: "RSMP / Tarmac Masters" },
@@ -19,12 +21,7 @@ export default function HorizontalGallery() {
 
     let cleanup: (() => void) | undefined;
 
-    const init = async () => {
-      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
-        import("gsap"),
-        import("gsap/ScrollTrigger"),
-      ]);
-
+    const init = () => {
       gsap.registerPlugin(ScrollTrigger);
 
       const section = sectionRef.current;
@@ -95,7 +92,7 @@ export default function HorizontalGallery() {
       cleanup = () => ctx.revert();
     };
 
-    void init();
+    init();
 
     return () => {
       cleanup?.();
@@ -103,7 +100,7 @@ export default function HorizontalGallery() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative overflow-hidden bg-[#080808]">
+    <div ref={sectionRef} className="relative bg-[#080808]">
       <div className="pointer-events-none absolute left-12 top-12 z-20">
         <p className="flex items-center gap-4 font-display text-[11px] font-bold uppercase tracking-[0.3em] text-[#d42b2b]">
           <span className="block h-px w-8 bg-[#d42b2b]" />

@@ -2,52 +2,29 @@
 
 import type { ReactNode } from "react";
 import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "@studio-freight/lenis";
 
-export default function LenisProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
+gsap.registerPlugin(ScrollTrigger);
+
+export default function LenisProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
 
-    let destroy: (() => void) | undefined;
+    lenis.on("scroll", ScrollTrigger.update);
 
-    const init = async () => {
-      const [{ default: Lenis }, { default: gsap }, { ScrollTrigger }] =
-        await Promise.all([
-          import("@studio-freight/lenis"),
-          import("gsap"),
-          import("gsap/ScrollTrigger"),
-        ]);
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-      });
-
-      lenis.on("scroll", ScrollTrigger.update);
-
-      const update = (time: number) => {
-        lenis.raf(time * 1000);
-      };
-
-      gsap.ticker.add(update);
-      gsap.ticker.lagSmoothing(0);
-
-      destroy = () => {
-        lenis.destroy();
-        gsap.ticker.remove(update);
-      };
-    };
-
-    void init();
+    const update = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      destroy?.();
+      lenis.destroy();
+      gsap.ticker.remove(update);
     };
   }, []);
 
