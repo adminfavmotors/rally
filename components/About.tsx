@@ -7,8 +7,8 @@ const viewport = { once: true, amount: 0.2 };
 
 const stats = [
   { value: "15", suffix: "+", label: "Lat na rynku" },
-  { value: "40", suffix: "+", label: "Zbudowanych rajdĂłwek" },
-  { value: "3", suffix: "Ă—", label: "TytuĹ‚y mistrzowskie" },
+  { value: "40", suffix: "+", label: "Zbudowanych rajdówek" },
+  { value: "3", suffix: "×", label: "Tytuły mistrzowskie" },
 ];
 
 export default function About() {
@@ -61,28 +61,36 @@ export default function About() {
 
           <div className="mt-8 space-y-6 text-[16px] font-light leading-[1.8] text-white/60">
             <p>
-              Od lat budujemy i serwisujemy samochody rajdowe dla kierowcĂłw,
-              ktĂłrzy oczekujÄ… czegoĹ› wiÄ™cej niĹĽ poprawnej specyfikacji.
-              Tworzymy auta gotowe na realne obciÄ…ĹĽenia, z naciskiem na{" "}
-              <span className="font-medium text-white">niezawodnoĹ›Ä‡</span>,{" "}
+              Od lat budujemy i serwisujemy samochody rajdowe dla kierowców,
+              którzy oczekują czegoś więcej niż poprawnej specyfikacji.
+              Tworzymy auta gotowe na realne obciążenia, z naciskiem na{" "}
+              <span className="font-medium text-white">niezawodność</span>,{" "}
               <span className="font-medium text-white">tempo pracy</span> i
-              precyzjÄ™ kaĹĽdego detalu.
+              precyzję każdego detalu.
             </p>
             <p>
-              Rally Craft to zespĂłĹ‚ z Krakowa, ktĂłry Ĺ‚Ä…czy warsztatowe rzemiosĹ‚o
-              z doĹ›wiadczeniem zdobytym na oesach. Pracujemy blisko z zaĹ‚ogami,
-              bo najlepsze ustawienia i rozwiÄ…zania powstajÄ… wtedy, gdy{" "}
+              Rally Craft to zespół z Krakowa, który łączy warsztatowe rzemiosło
+              z doświadczeniem zdobytym na oesach. Pracujemy blisko z załogami,
+              bo najlepsze ustawienia i rozwiązania powstają wtedy, gdy{" "}
               <span className="font-medium text-white">mechanika</span>,{" "}
               <span className="font-medium text-white">strategia</span> i styl
-              jazdy sÄ… traktowane jako jeden system.
+              jazdy są traktowane jako jeden system.
             </p>
           </div>
 
           <div className="mt-10 border-l-2 border-red pl-6">
             <div className="font-display text-[20px] font-bold uppercase tracking-[0.05em] leading-[1.6] text-white/85">
-              <SplitText text="Każdy bolid to historia." stagger={0.06} delay={0.1} />
+              <SplitText
+                text="Każdy bolid to historia."
+                stagger={0.06}
+                delay={0.1}
+              />
               <br />
-              <SplitText text="Każdy rajd to wyzwanie." stagger={0.06} delay={0.4} />
+              <SplitText
+                text="Każdy rajd to wyzwanie."
+                stagger={0.06}
+                delay={0.4}
+              />
             </div>
           </div>
         </motion.div>

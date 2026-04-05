@@ -6,14 +6,14 @@ import SplitText from "@/components/SplitText";
 
 const headlineLines = [
   { text: "Budujemy", className: "text-white", delay: 0.1 },
-  { text: "ZwyciÄ™skie", className: "text-red", delay: 0.22 },
-  { text: "RajdĂłwki", className: "text-white", delay: 0.34 },
+  { text: "Zwycięskie", className: "text-red", delay: 0.22 },
+  { text: "Rajdówki", className: "text-white", delay: 0.34 },
 ];
 
 const stats = [
-  { value: "15", accent: "+", label: "Lat doĹ›wiadczenia" },
-  { value: "40", accent: "+", label: "RajdĂłwek zbudowanych" },
-  { value: "3", accent: "Ă—", label: "TytuĹ‚y mistrzowskie" },
+  { value: "15", accent: "+", label: "Lat doświadczenia" },
+  { value: "40", accent: "+", label: "Rajdówek zbudowanych" },
+  { value: "3", accent: "×", label: "Tytuły mistrzowskie" },
 ];
 
 function ArrowIcon() {
@@ -130,8 +130,8 @@ export default function Hero() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Profesjonalny serwis i budowa samochodĂłw rajdowych. ObsĹ‚uga zaĹ‚Ăłg
-            w RSMP, GSMP i imprezach ogĂłlnopolskich.
+            Profesjonalny serwis i budowa samochodów rajdowych. Obsługa załóg w
+            RSMP, GSMP i imprezach ogólnopolskich.
           </motion.p>
 
           <motion.div
@@ -148,7 +148,7 @@ export default function Hero() {
               href="#services"
               className="clip-corner inline-flex items-center gap-3 bg-red px-6 py-4 font-display text-[13px] font-bold uppercase tracking-[0.15em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#ff3535]"
             >
-              <span>Zobacz usĹ‚ugi</span>
+              <span>Zobacz usługi</span>
               <ArrowIcon />
             </Link>
 

@@ -9,7 +9,7 @@ const viewport = { once: true, amount: 0.2 };
 const contactItems = [
   {
     label: "Adres",
-    value: "ul. PĂłĹ‚Ĺ‚anki 31L\n30-740, KrakĂłw",
+    value: "ul. Półłanki 31L\n30-740, Kraków",
   },
   {
     label: "Telefon",
@@ -23,7 +23,10 @@ const contactItems = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-gray px-6 py-24 text-center md:px-12 md:py-[120px]">
+    <section
+      id="contact"
+      className="bg-gray px-6 py-24 text-center md:px-12 md:py-[120px]"
+    >
       <div className="mx-auto max-w-[700px]">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
@@ -43,8 +46,9 @@ export default function Contact() {
           </h2>
 
           <p className="mx-auto mt-8 max-w-[520px] text-[15px] font-light leading-[1.7] text-white/50">
-            JeĹ›li przygotowujesz auto na sezon, potrzebujesz zaplecza serwisowego
-            albo szukasz partnera technicznego na rajd, porozmawiajmy.
+            Jeśli przygotowujesz auto na sezon, potrzebujesz zaplecza
+            serwisowego albo szukasz partnera technicznego na rajd,
+            porozmawiajmy.
           </p>
         </motion.div>
 

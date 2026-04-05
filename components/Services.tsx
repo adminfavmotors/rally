@@ -32,7 +32,10 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-black px-6 py-24 md:px-12 md:py-[120px]">
+    <section
+      id="services"
+      className="bg-black px-6 py-24 md:px-12 md:py-[120px]"
+    >
       <div className="mx-auto max-w-[1440px]">
         <motion.div
           className="mb-16 flex flex-col gap-10 md:mb-20 md:flex-row md:items-end md:justify-between"
@@ -54,8 +57,8 @@ export default function Services() {
           </div>
 
           <p className="max-w-[320px] text-[15px] font-light leading-[1.7] text-white/50">
-            Kompleksowa obsługa techniczna samochodów rajdowych - od projektu po
-            metę.
+            Kompleksowa obsługa techniczna samochodów rajdowych - od projektu
+            po metę.
           </p>
         </motion.div>
 
