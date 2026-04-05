@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import SplitText from "@/components/SplitText";
 
 const viewport = { once: true, amount: 0.2 };
 
 const contactItems = [
   {
     label: "Adres",
-    value: "ul. Półłanki 31L\n30-740, Kraków",
+    value: "ul. PĂłĹ‚Ĺ‚anki 31L\n30-740, KrakĂłw",
   },
   {
     label: "Telefon",
@@ -38,13 +39,11 @@ export default function Contact() {
           </div>
 
           <h2 className="mt-6 font-display text-[clamp(48px,6vw,88px)] font-black uppercase leading-[0.9] text-white">
-            Zacznijmy
-            <br />
-            Działać
+            <SplitText text="Zacznijmy Działać" stagger={0.1} delay={0.1} />
           </h2>
 
           <p className="mx-auto mt-8 max-w-[520px] text-[15px] font-light leading-[1.7] text-white/50">
-            Jeśli przygotowujesz auto na sezon, potrzebujesz zaplecza serwisowego
+            JeĹ›li przygotowujesz auto na sezon, potrzebujesz zaplecza serwisowego
             albo szukasz partnera technicznego na rajd, porozmawiajmy.
           </p>
         </motion.div>

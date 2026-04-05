@@ -19,18 +19,16 @@ export default function HorizontalGallery() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    let cleanup: (() => void) | undefined;
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    let ctx: ReturnType<typeof gsap.context>;
 
     const init = () => {
-      gsap.registerPlugin(ScrollTrigger);
-
-      const section = sectionRef.current;
-      const track = trackRef.current;
-      if (!section || !track) return;
-
       const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
 
-      const ctx = gsap.context(() => {
+      ctx = gsap.context(() => {
         gsap.to(track, {
           x: getScrollAmount,
           ease: "none",
@@ -42,12 +40,14 @@ export default function HorizontalGallery() {
             scrub: 1.2,
             anticipatePin: 1,
             invalidateOnRefresh: true,
+            onRefresh: () => ScrollTrigger.refresh(),
           },
         });
 
         const cards = track.querySelectorAll(".gallery-card");
         cards.forEach((card, i) => {
           const img = card.querySelector(".gallery-img-inner");
+          const total = cards.length;
 
           gsap.fromTo(
             card,
@@ -58,9 +58,9 @@ export default function HorizontalGallery() {
               scrollTrigger: {
                 trigger: section,
                 start: () =>
-                  `top top-=${i * 0.1 * Math.abs(getScrollAmount())}`,
+                  `top top-=${(i / total) * Math.abs(getScrollAmount()) * 0.9}`,
                 end: () =>
-                  `top top-=${(i + 0.8) * 0.1 * Math.abs(getScrollAmount())}`,
+                  `top top-=${((i + 0.8) / total) * Math.abs(getScrollAmount()) * 0.9}`,
                 scrub: 1.2,
                 invalidateOnRefresh: true,
               },
@@ -77,9 +77,9 @@ export default function HorizontalGallery() {
                 scrollTrigger: {
                   trigger: section,
                   start: () =>
-                    `top top-=${i * 0.1 * Math.abs(getScrollAmount())}`,
+                    `top top-=${(i / total) * Math.abs(getScrollAmount()) * 0.9}`,
                   end: () =>
-                    `top top-=${(i + 0.8) * 0.1 * Math.abs(getScrollAmount())}`,
+                    `top top-=${((i + 0.8) / total) * Math.abs(getScrollAmount()) * 0.9}`,
                   scrub: 1.2,
                   invalidateOnRefresh: true,
                 },
@@ -89,13 +89,17 @@ export default function HorizontalGallery() {
         });
       }, section);
 
-      cleanup = () => ctx.revert();
+      ScrollTrigger.refresh();
     };
 
-    init();
+    if (document.fonts) {
+      document.fonts.ready.then(init);
+    } else {
+      init();
+    }
 
     return () => {
-      cleanup?.();
+      ctx?.revert();
     };
   }, []);
 
