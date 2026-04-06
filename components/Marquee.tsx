@@ -1,7 +1,17 @@
 "use client";
+
 import { motion } from "framer-motion";
 
-const items = ["RSMP", "GSMP", "Budowa Rajdówek", "Serwis Techniczny", "Modyfikacje", "Obsługa Imprez", "Kraków", "Od 2010"];
+const items = [
+  "RSMP",
+  "GSMP",
+  "Budowa Rajdówek",
+  "Serwis Techniczny",
+  "Modyfikacje",
+  "Obsługa Imprez",
+  "Kraków",
+  "Od 2010",
+];
 
 export default function Marquee() {
   return (
