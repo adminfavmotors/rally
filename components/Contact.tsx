@@ -1,99 +1,88 @@
 "use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
-import SplitText from "@/components/SplitText";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const viewport = { once: true, amount: 0.2 };
+gsap.registerPlugin(ScrollTrigger);
 
-const contactItems = [
-  {
-    label: "Adres",
-    value: "ul. Półłanki 31L\n30-740, Kraków",
-  },
-  {
-    label: "Telefon",
-    value: "+48 502 351 941\n+48 577 112 717",
-  },
-  {
-    label: "Godziny",
-    value: "Pon-Pt\n07:00 - 16:00",
-  },
+const info = [
+  { label: "Adres", value: "ul. Półłanki 31L\n30-740, Kraków" },
+  { label: "Telefon", value: "+48 502 351 941\n+48 577 112 717" },
+  { label: "Godziny", value: "Pon–Pt\n07:00–16:00" },
 ];
 
 export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const words = headingRef.current?.querySelectorAll(".word span");
+      if (words) {
+        gsap.set(words, { yPercent: 110 });
+        gsap.to(words, {
+          yPercent: 0,
+          duration: 1,
+          ease: "expo.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
-      id="contact"
-      className="bg-gray px-6 py-24 text-center md:px-12 md:py-[120px]"
+      id="kontakt"
+      ref={sectionRef}
+      className="bg-bg px-8 py-24 md:px-16 md:py-32"
     >
-      <div className="mx-auto max-w-[700px]">
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewport}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-px w-8 bg-red" />
-            <p className="font-display text-[11px] font-bold uppercase tracking-[0.3em] text-red">
-              Kontakt
-            </p>
+      <div className="mx-auto max-w-[1400px]">
+        <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-red">
+          <span className="h-px w-8 bg-red" />
+          Skontaktuj się
+        </p>
+        <div ref={headingRef} className="mb-20">
+          <div className="font-display text-[clamp(56px,9vw,130px)] leading-[0.88] text-ink">
+            {"ZACZNIJMY DZIAŁAĆ".split(" ").map((word, i) => (
+              <span key={i} className="word mr-6 inline-block overflow-hidden">
+                <span className="inline-block">{word}</span>
+              </span>
+            ))}
           </div>
+        </div>
 
-          <h2 className="mt-6 font-display text-[clamp(48px,6vw,88px)] font-black uppercase leading-[0.9] text-white">
-            <SplitText text="Zacznijmy Działać" stagger={0.1} delay={0.1} />
-          </h2>
-
-          <p className="mx-auto mt-8 max-w-[520px] text-[15px] font-light leading-[1.7] text-white/50">
-            Jeśli przygotowujesz auto na sezon, potrzebujesz zaplecza
-            serwisowego albo szukasz partnera technicznego na rajd,
-            porozmawiajmy.
-          </p>
-        </motion.div>
-
-        <div className="mt-16 grid gap-px bg-white/10 md:grid-cols-3">
-          {contactItems.map((item, index) => (
-            <motion.div
-              key={item.label}
-              className="bg-gray px-7 py-8 text-left"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewport}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <p className="font-display text-[10px] font-bold uppercase tracking-[0.25em] text-red">
+        <div className="grid gap-px bg-border md:grid-cols-3">
+          {info.map((item) => (
+            <div key={item.label} className="bg-bg p-10">
+              <p className="mb-4 font-body text-[10px] font-medium uppercase tracking-[0.25em] text-red">
                 {item.label}
               </p>
-              <p className="mt-4 whitespace-pre-line text-[15px] font-light leading-[1.6] text-white/80">
+              <p className="whitespace-pre-line font-body text-[15px] font-light leading-[1.7] text-ink">
                 {item.value}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          className="mt-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewport}
-          transition={{
-            duration: 0.8,
-            delay: 0.35,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
+        <div className="mt-12">
           <Link
             href="mailto:info@rallycraft.pl"
-            className="clip-corner inline-flex items-center justify-center bg-red px-6 py-4 font-display text-[13px] font-bold uppercase tracking-[0.15em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#ff3535]"
+            className="inline-flex items-center gap-4 bg-red px-10 py-5 font-body text-[14px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:bg-red-dark"
           >
             Napisz do nas
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

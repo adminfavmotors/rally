@@ -1,59 +1,53 @@
 "use client";
-
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
-const navLinks = [
-  { href: "#services", label: "Usługi" },
+const links = [
+  { href: "#uslugi", label: "Usługi" },
   { href: "#zalogi", label: "Załogi" },
   { href: "#about", label: "O Nas" },
-  { href: "#contact", label: "Kontakt" },
+  { href: "#kontakt", label: "Kontakt" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed left-0 top-0 z-[100] w-full transition-all duration-200 ${
-        scrolled
-          ? "border-b border-white/[0.06] bg-[rgba(8,8,8,0.92)] backdrop-blur-[12px]"
-          : "border-b border-transparent bg-transparent"
-      }`}
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 transition-all duration-500"
+      style={{
+        background: scrolled ? "rgba(245,244,240,0.95)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(14,14,14,0.08)" : "none",
+      }}
     >
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-6 py-5 md:px-12">
-        <Link
-          href="/"
-          className="font-display text-[22px] font-black uppercase tracking-[0.12em] text-white"
-        >
-          Rally <span className="text-red">Craft</span>
-        </Link>
-
-        <nav className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+      <Link href="/" className="font-display text-2xl tracking-wider text-ink">
+        RALLY<span className="text-red">CRAFT</span>
+      </Link>
+      <ul className="hidden md:flex items-center gap-10">
+        {links.map((l) => (
+          <li key={l.href}>
             <Link
-              key={link.href}
-              href={link.href}
-              className="font-display text-[13px] font-bold uppercase tracking-[0.15em] text-white/60 transition-colors duration-200 hover:text-white"
+              href={l.href}
+              className="font-body text-[13px] font-medium uppercase tracking-[0.12em] text-ink-muted transition-colors hover:text-red"
             >
-              {link.label}
+              {l.label}
             </Link>
-          ))}
-        </nav>
-      </div>
-    </header>
+          </li>
+        ))}
+      </ul>
+      <Link
+        href="#kontakt"
+        className="hidden md:inline-flex items-center gap-2 bg-red px-5 py-2.5 font-body text-[13px] font-medium uppercase tracking-[0.1em] text-white transition-colors hover:bg-red-dark"
+      >
+        Kontakt
+      </Link>
+    </nav>
   );
 }

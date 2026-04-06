@@ -1,47 +1,26 @@
 "use client";
-
 import { motion } from "framer-motion";
 
-const items = [
-  "RSMP",
-  "GSMP",
-  "Budowa Rajdówek",
-  "Serwis Techniczny",
-  "Modyfikacje",
-  "Obsługa Imprez",
-];
-
-function MarqueeSet({ hidden = false }: { hidden?: boolean }) {
-  return (
-    <div
-      className="flex shrink-0 items-center whitespace-nowrap"
-      aria-hidden={hidden}
-    >
-      {items.map((item, index) => (
-        <div key={`${item}-${index}`} className="flex items-center">
-          <span className="px-12 font-display text-[13px] font-bold uppercase tracking-[0.2em] text-muted">
-            {item}
-          </span>
-          <span className="font-display text-[16px] font-bold text-red">
-            ✦
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
+const items = ["RSMP", "GSMP", "Budowa Rajdówek", "Serwis Techniczny", "Modyfikacje", "Obsługa Imprez", "Kraków", "Od 2010"];
 
 export default function Marquee() {
   return (
-    <section className="overflow-hidden border-y border-white/10 bg-gray py-[14px]">
+    <div className="overflow-hidden border-y border-border bg-ink py-3">
       <motion.div
-        className="flex w-max items-center"
+        className="flex whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
       >
-        <MarqueeSet />
-        <MarqueeSet hidden />
+        {[...items, ...items].map((item, i) => (
+          <span
+            key={i}
+            className="mx-10 font-display text-[14px] tracking-[0.2em] text-bg"
+          >
+            {item}
+            <span className="ml-10 text-red">✦</span>
+          </span>
+        ))}
       </motion.div>
-    </section>
+    </div>
   );
 }

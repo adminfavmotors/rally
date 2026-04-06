@@ -1,189 +1,177 @@
 "use client";
-
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import SplitText from "@/components/SplitText";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const headlineLines = [
-  { text: "Budujemy", className: "text-white", delay: 0.1 },
-  { text: "Zwycięskie", className: "text-red", delay: 0.22 },
-  { text: "Rajdówki", className: "text-white", delay: 0.34 },
-];
-
-const stats = [
-  { value: "15", accent: "+", label: "Lat doświadczenia" },
-  { value: "40", accent: "+", label: "Rajdówek zbudowanych" },
-  { value: "3", accent: "×", label: "Tytuły mistrzowskie" },
-];
-
-function ArrowIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 20 20"
-      fill="none"
-      className="h-4 w-4"
-    >
-      <path
-        d="M4.16663 10H15.8333"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10.8334 5L15.8334 10L10.8334 15"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const line1Ref = useRef<HTMLDivElement>(null);
+  const line2Ref = useRef<HTMLDivElement>(null);
+  const line3Ref = useRef<HTMLDivElement>(null);
+  const eyebrowRef = useRef<HTMLDivElement>(null);
+  const subRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const bgTextRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set([line1Ref.current, line2Ref.current, line3Ref.current], {
+        yPercent: 110,
+      });
+      gsap.set(
+        [eyebrowRef.current, subRef.current, ctaRef.current, statsRef.current],
+        { opacity: 0, y: 20 }
+      );
+
+      const tl = gsap.timeline({ delay: 0.1 });
+
+      tl.to(eyebrowRef.current, {
+        opacity: 1, y: 0, duration: 0.6, ease: "power3.out",
+      })
+      .to(line1Ref.current, {
+        yPercent: 0, duration: 1, ease: "expo.out",
+      }, "-=0.3")
+      .to(line2Ref.current, {
+        yPercent: 0, duration: 1, ease: "expo.out",
+      }, "-=0.75")
+      .to(line3Ref.current, {
+        yPercent: 0, duration: 1, ease: "expo.out",
+      }, "-=0.75")
+      .to(subRef.current, {
+        opacity: 1, y: 0, duration: 0.7, ease: "power3.out",
+      }, "-=0.5")
+      .to(ctaRef.current, {
+        opacity: 1, y: 0, duration: 0.7, ease: "power3.out",
+      }, "-=0.5")
+      .to(statsRef.current, {
+        opacity: 1, y: 0, duration: 0.7, ease: "power3.out",
+      }, "-=0.4");
+
+      if (bgTextRef.current) {
+        gsap.to(bgTextRef.current, {
+          yPercent: -30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative flex min-h-screen items-end overflow-hidden bg-black px-6 pb-16 pt-32 md:px-12 md:pb-20">
+    <section
+      ref={heroRef}
+      className="relative flex min-h-screen flex-col justify-end overflow-hidden bg-bg px-8 pb-20 pt-32 md:px-16"
+    >
       <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 70% 40%, #1a0a0a 0%, #080808 60%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-70"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(245,245,240,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,245,240,0.04) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-0 top-0 w-1"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, #d42b2b 30%, #d42b2b 70%, transparent)",
-        }}
-        animate={{ opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
+        ref={bgTextRef}
         aria-hidden="true"
-        className="pointer-events-none absolute right-[-20px] top-1/2 -translate-y-1/2 font-display text-[clamp(180px,22vw,320px)] font-black uppercase leading-none text-transparent"
-        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.04)" }}
-        animate={{ x: [0, -30] }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "mirror",
-          ease: "easeInOut",
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 select-none font-display leading-none text-ink"
+        style={{
+          fontSize: "clamp(160px, 20vw, 300px)",
+          opacity: 0.04,
+          letterSpacing: "-0.02em",
         }}
       >
         RALLY
-      </motion.div>
+      </div>
 
-      <div className="relative z-10 flex w-full max-w-[1440px] flex-col">
-        <div className="max-w-[900px]">
-          <motion.div
-            className="flex items-center gap-4"
-            initial={{ y: 24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="h-px w-10 bg-red" />
-            <SplitText
-              text="Kraków, Polska - Od 2010"
-              className="font-display text-[12px] font-bold uppercase tracking-[0.25em] text-red"
-              stagger={0.05}
-              delay={0}
-            />
-          </motion.div>
+      <div className="absolute left-0 top-0 h-full w-[3px] bg-red opacity-80" />
 
-          <div className="mt-6 space-y-1">
-            {headlineLines.map((line) => (
-              <div key={line.text} className="overflow-hidden">
-                <motion.span
-                  className={`block font-display text-[clamp(72px,10vw,140px)] font-black uppercase leading-[0.88] tracking-[-0.01em] ${line.className}`}
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 80,
-                    damping: 20,
-                    delay: line.delay,
-                  }}
-                >
-                  {line.text}
-                </motion.span>
-              </div>
-            ))}
-          </div>
-
-          <motion.p
-            className="mt-8 max-w-[420px] text-[15px] font-light leading-[1.7] text-white/[0.55]"
-            initial={{ y: 24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.5,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            Profesjonalny serwis i budowa samochodów rajdowych. Obsługa załóg w
-            RSMP, GSMP i imprezach ogólnopolskich.
-          </motion.p>
-
-          <motion.div
-            className="mt-12 flex flex-wrap items-center gap-6"
-            initial={{ y: 24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            <Link
-              href="#services"
-              className="clip-corner inline-flex items-center gap-3 bg-red px-6 py-4 font-display text-[13px] font-bold uppercase tracking-[0.15em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#ff3535]"
-            >
-              <span>Zobacz usługi</span>
-              <ArrowIcon />
-            </Link>
-
-            <Link
-              href="#about"
-              className="inline-flex items-center gap-3 border-b border-white/20 pb-1 font-display text-[13px] font-bold uppercase tracking-[0.15em] text-white/60 transition-all duration-200 hover:border-white hover:text-white"
-            >
-              <span>O nas</span>
-              <ArrowIcon />
-            </Link>
-          </motion.div>
+      <div className="relative z-10 max-w-[1400px]">
+        <div
+          ref={eyebrowRef}
+          className="mb-6 flex items-center gap-4"
+        >
+          <div className="h-px w-12 bg-red" />
+          <span className="font-body text-[12px] font-medium uppercase tracking-[0.25em] text-ink-muted">
+            Kraków, Polska — Od 2010
+          </span>
         </div>
 
-        <motion.div
-          className="relative z-10 mt-14 flex w-full flex-col gap-8 lg:absolute lg:bottom-20 lg:right-12 lg:mt-0 lg:w-auto lg:items-end"
-          initial={{ y: 24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.8,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+        <div style={{ overflow: "hidden" }}>
+          <div
+            ref={line1Ref}
+            className="font-display leading-[0.85] text-ink"
+            style={{ fontSize: "clamp(80px, 12vw, 180px)" }}
+          >
+            BUDUJEMY
+          </div>
+        </div>
+        <div style={{ overflow: "hidden" }}>
+          <div
+            ref={line2Ref}
+            className="font-display leading-[0.85] text-red"
+            style={{ fontSize: "clamp(80px, 12vw, 180px)" }}
+          >
+            ZWYCIĘSKIE
+          </div>
+        </div>
+        <div style={{ overflow: "hidden" }}>
+          <div
+            ref={line3Ref}
+            className="font-display leading-[0.85] text-ink"
+            style={{ fontSize: "clamp(80px, 12vw, 180px)" }}
+          >
+            RAJDÓWKI
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div ref={subRef}>
+            <p className="max-w-[380px] font-body text-[15px] font-light leading-[1.8] text-ink-muted">
+              Profesjonalny serwis i budowa samochodów rajdowych.
+              Obsługa załóg w RSMP, GSMP i imprezach ogólnopolskich.
+            </p>
+          </div>
+          <div ref={ctaRef} className="flex items-center gap-6">
+            <Link
+              href="#uslugi"
+              className="inline-flex items-center gap-3 bg-red px-7 py-4 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:bg-red-dark"
+            >
+              Zobacz usługi
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
+            <Link
+              href="#about"
+              className="font-body text-[13px] font-medium uppercase tracking-[0.12em] text-ink-muted underline underline-offset-4 transition-colors hover:text-red"
+            >
+              O nas
+            </Link>
+          </div>
+        </div>
+
+        <div
+          ref={statsRef}
+          className="mt-16 flex gap-12 border-t border-border pt-8"
         >
-          {stats.map((stat) => (
-            <div key={stat.label} className="lg:text-right">
-              <div className="font-display text-[48px] font-black leading-none text-white">
-                {stat.value}
-                <span className="text-red">{stat.accent}</span>
+          {[
+            { value: "15", suffix: "+", label: "Lat doświadczenia" },
+            { value: "40", suffix: "+", label: "Rajdówek zbudowanych" },
+            { value: "3", suffix: "×", label: "Tytuły mistrzowskie" },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="font-display text-[48px] leading-none text-ink">
+                {s.value}<span className="text-red">{s.suffix}</span>
               </div>
-              <p className="mt-2 text-[11px] uppercase tracking-[0.15em] text-muted">
-                {stat.label}
-              </p>
+              <div className="mt-1 font-body text-[11px] uppercase tracking-[0.15em] text-ink-muted">
+                {s.label}
+              </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

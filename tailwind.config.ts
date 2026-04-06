@@ -8,16 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        black: "var(--black)",
-        white: "var(--white)",
-        red: "var(--red)",
-        gray: "var(--gray)",
-        gray2: "var(--gray2)",
-        muted: "var(--muted)",
+        bg: "#F5F4F0",
+        "bg-alt": "#EDECEA",
+        ink: "#0E0E0E",
+        "ink-muted": "#6B6B6B",
+        red: "#C8102E",
+        "red-dark": "#9E0C24",
       },
       fontFamily: {
-        sans: ["var(--font-barlow)", "sans-serif"],
-        display: ["var(--font-barlow-condensed)", "sans-serif"],
+        display: ["Bebas Neue", "sans-serif"],
+        body: ["DM Sans", "sans-serif"],
       },
     },
   },
