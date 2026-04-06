@@ -4,8 +4,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const info = [
   { label: "Adres", value: "ul. Półłanki 31L\n30-740, Kraków" },
   { label: "Telefon", value: "+48 502 351 941\n+48 577 112 717" },

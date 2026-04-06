@@ -4,8 +4,6 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const line1Ref = useRef<HTMLDivElement>(null);

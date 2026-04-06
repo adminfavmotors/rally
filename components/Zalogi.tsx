@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const teams = [
   { driver: "Artur Równiatka / Wojciech Habuda", champ: "RSMP / Tarmac Masters", car: "Mitsubishi Lancer Evo X", num: "01" },
   { driver: "Leon Zardzewiały", champ: "GSMP", car: "Honda Civic", num: "02" },

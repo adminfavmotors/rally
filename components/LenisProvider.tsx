@@ -9,31 +9,45 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function LenisProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
-    let lenis: Lenis;
-    let tick: ((time: number) => void) | undefined;
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
 
-    try {
-      lenis = new Lenis({
-        duration: 1.4,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 2,
-      });
+    ScrollTrigger.scrollerProxy(document.documentElement, {
+      scrollTop(value) {
+        if (arguments.length && value !== undefined) {
+          lenis.scrollTo(value, { immediate: true });
+        }
+        return window.scrollY;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+    });
 
-      lenis.on("scroll", () => ScrollTrigger.update());
-      tick = (time: number) => lenis.raf(time * 1000);
-      gsap.ticker.add(tick);
-      gsap.ticker.lagSmoothing(0);
+    lenis.on("scroll", () => ScrollTrigger.update());
 
-      document.fonts.ready.then(() => ScrollTrigger.refresh());
-    } catch (e) {
-      console.error("Lenis init error:", e);
-    }
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
+
     return () => {
-      lenis?.destroy();
+      lenis.destroy();
+      gsap.ticker.remove(tick);
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      if (tick) gsap.ticker.remove(tick);
     };
   }, []);
+
   return <>{children}</>;
 }

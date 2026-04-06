@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const cars = [
   { name: "Mitsubishi Lancer Evo X", tag: "RSMP / Tarmac Masters", code: "EVO X" },
   { name: "Ford Fiesta R5", tag: "RSMP", code: "R5" },
