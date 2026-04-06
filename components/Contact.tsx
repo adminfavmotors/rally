@@ -45,8 +45,8 @@ export default function Contact() {
       className="bg-bg px-8 py-24 md:px-16 md:py-32"
     >
       <div className="mx-auto max-w-[1400px]">
-        <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-red">
-          <span className="h-px w-8 bg-red" />
+        <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-yellow">
+          <span className="h-px w-8 bg-yellow" />
           Skontaktuj się
         </p>
         <div ref={headingRef} className="mb-20">
@@ -62,7 +62,7 @@ export default function Contact() {
         <div className="grid gap-px bg-border md:grid-cols-3">
           {info.map((item) => (
             <div key={item.label} className="bg-bg p-10">
-              <p className="mb-4 font-body text-[10px] font-medium uppercase tracking-[0.25em] text-red">
+              <p className="mb-4 font-body text-[10px] font-medium uppercase tracking-[0.25em] text-yellow">
                 {item.label}
               </p>
               <p className="whitespace-pre-line font-body text-[15px] font-light leading-[1.7] text-ink">
@@ -75,7 +75,7 @@ export default function Contact() {
         <div className="mt-12">
           <Link
             href="mailto:info@rallycraft.pl"
-            className="inline-flex items-center gap-4 bg-red px-10 py-5 font-body text-[14px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:bg-red-dark"
+            className="inline-flex items-center gap-4 bg-yellow px-10 py-5 font-body text-[14px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:bg-yellow-dark"
           >
             Napisz do nas
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

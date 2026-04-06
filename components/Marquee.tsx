@@ -17,7 +17,7 @@ export default function Marquee() {
             className="mx-10 font-display text-[14px] tracking-[0.2em] text-bg"
           >
             {item}
-            <span className="ml-10 text-red">✦</span>
+            <span className="ml-10 text-yellow">✦</span>
           </span>
         ))}
       </motion.div>

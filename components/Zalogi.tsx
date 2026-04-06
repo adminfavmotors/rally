@@ -47,8 +47,8 @@ export default function Zalogi() {
     >
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-16">
-          <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-red">
-            <span className="h-px w-8 bg-red" />
+          <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-yellow">
+            <span className="h-px w-8 bg-yellow" />
             Nasi kierowcy
           </p>
           <h2 className="font-display text-[clamp(56px,8vw,120px)] leading-[0.88] text-ink">
@@ -68,7 +68,7 @@ export default function Zalogi() {
               >
                 {t.num}
               </div>
-              <p className="mb-2 font-body text-[11px] font-medium uppercase tracking-[0.2em] text-red">
+              <p className="mb-2 font-body text-[11px] font-medium uppercase tracking-[0.2em] text-yellow">
                 {t.champ}
               </p>
               <h3 className="mb-1 font-display text-[clamp(20px,2vw,26px)] leading-tight text-ink">
@@ -77,7 +77,7 @@ export default function Zalogi() {
               <p className="font-body text-[13px] font-light text-ink-muted">
                 {t.car}
               </p>
-              <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-red transition-all duration-500 group-hover:w-full" />
+              <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-yellow transition-all duration-500 group-hover:w-full" />
             </div>
           ))}
         </div>

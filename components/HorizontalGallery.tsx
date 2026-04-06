@@ -54,8 +54,8 @@ export default function HorizontalGallery() {
     <div ref={sectionRef} className="bg-bg-alt">
       <div className="flex items-end justify-between px-8 py-12 md:px-16">
         <div>
-          <p className="mb-3 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-red">
-            <span className="h-px w-8 bg-red" />
+          <p className="mb-3 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-yellow">
+            <span className="h-px w-8 bg-yellow" />
             Nasze Maszyny
           </p>
           <h2 className="font-display text-[clamp(48px,7vw,100px)] leading-[0.88] text-ink">
@@ -85,11 +85,11 @@ export default function HorizontalGallery() {
               {car.code}
             </div>
 
-            <div className="absolute left-0 top-0 h-[3px] w-16 bg-red transition-all duration-500 group-hover:w-full" />
-            <div className="absolute left-0 top-0 h-16 w-[3px] bg-red" />
+            <div className="absolute left-0 top-0 h-[3px] w-16 bg-yellow transition-all duration-500 group-hover:w-full" />
+            <div className="absolute left-0 top-0 h-16 w-[3px] bg-yellow" />
 
             <div className="relative z-10">
-              <p className="mb-2 font-body text-[11px] font-medium uppercase tracking-[0.2em] text-red">
+              <p className="mb-2 font-body text-[11px] font-medium uppercase tracking-[0.2em] text-yellow">
                 {car.tag}
               </p>
               <h3 className="font-display text-[clamp(22px,2.5vw,32px)] leading-tight text-ink">

@@ -91,7 +91,7 @@ export default function About() {
                 <span className="stat-num" data-target={s.target}>
                   0
                 </span>
-                <span className="text-red">{s.suffix}</span>
+                <span className="text-yellow">{s.suffix}</span>
               </div>
               <p className="mt-2 font-body text-[12px] uppercase tracking-[0.15em] text-ink-muted">
                 {s.label}
@@ -101,8 +101,8 @@ export default function About() {
         </div>
 
         <div>
-          <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-red">
-            <span className="h-px w-8 bg-red" />
+          <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-yellow">
+            <span className="h-px w-8 bg-yellow" />
             Kim jesteśmy
           </p>
           <div ref={headingRef} className="mb-8">
@@ -128,7 +128,7 @@ export default function About() {
               rzemiosło z doświadczeniem zdobytym na oesach.
             </p>
           </div>
-          <div className="mt-10 border-l-[3px] border-red pl-6">
+          <div className="mt-10 border-l-[3px] border-yellow pl-6">
             <p className="font-display text-[22px] leading-[1.3] text-ink">
               KAŻDY BOLID TO HISTORIA.
               <br />

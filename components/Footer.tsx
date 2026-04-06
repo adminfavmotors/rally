@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-ink px-8 py-10 md:px-16">
       <div className="mx-auto flex max-w-[1400px] flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="font-display text-[22px] tracking-wider text-bg">
-          RALLY<span className="text-red">CRAFT</span>
+          RALLY<span className="text-yellow">CRAFT</span>
         </div>
         <p className="font-body text-[12px] text-bg opacity-40">
           © 2025 Rally Craft. Wszelkie prawa zastrzeżone.

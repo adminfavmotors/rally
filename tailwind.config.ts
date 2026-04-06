@@ -12,8 +12,8 @@ const config: Config = {
         "bg-alt": "#EDECEA",
         ink: "#0E0E0E",
         "ink-muted": "#6B6B6B",
-        red: "#C8102E",
-        "red-dark": "#9E0C24",
+        yellow: "#F4C500",
+        "yellow-dark": "#D4A800",
       },
       fontFamily: {
         display: ["Bebas Neue", "sans-serif"],

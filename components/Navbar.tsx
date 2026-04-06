@@ -22,20 +22,20 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 transition-all duration-500"
       style={{
-        background: scrolled ? "rgba(245,244,240,0.95)" : "transparent",
+        background: scrolled ? "rgba(245,244,240,0.97)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(14,14,14,0.08)" : "none",
       }}
     >
       <Link href="/" className="font-display text-2xl tracking-wider text-ink">
-        RALLY<span className="text-red">CRAFT</span>
+        RALLY<span className="text-yellow">CRAFT</span>
       </Link>
       <ul className="hidden md:flex items-center gap-10">
         {links.map((l) => (
           <li key={l.href}>
             <Link
               href={l.href}
-              className="font-body text-[13px] font-medium uppercase tracking-[0.12em] text-ink-muted transition-colors hover:text-red"
+              className="font-body text-[13px] font-medium uppercase tracking-[0.12em] text-ink-muted transition-colors hover:text-yellow"
             >
               {l.label}
             </Link>
@@ -44,7 +44,7 @@ export default function Navbar() {
       </ul>
       <Link
         href="#kontakt"
-        className="hidden md:inline-flex items-center gap-2 bg-red px-5 py-2.5 font-body text-[13px] font-medium uppercase tracking-[0.1em] text-white transition-colors hover:bg-red-dark"
+        className="hidden md:inline-flex items-center gap-2 bg-yellow px-5 py-2.5 font-body text-[13px] font-medium uppercase tracking-[0.1em] text-white transition-colors hover:bg-yellow-dark"
       >
         Kontakt
       </Link>

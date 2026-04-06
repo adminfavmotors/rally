@@ -86,14 +86,14 @@ export default function Hero() {
         RALLY
       </div>
 
-      <div className="absolute left-0 top-0 h-full w-[3px] bg-red opacity-80" />
+      <div className="absolute left-0 top-0 h-full w-[3px] bg-yellow opacity-80" />
 
       <div className="relative z-10 max-w-[1400px]">
         <div
           ref={eyebrowRef}
           className="mb-6 flex items-center gap-4"
         >
-          <div className="h-px w-12 bg-red" />
+          <div className="h-px w-12 bg-yellow" />
           <span className="font-body text-[12px] font-medium uppercase tracking-[0.25em] text-ink-muted">
             Kraków, Polska — Od 2010
           </span>
@@ -111,7 +111,7 @@ export default function Hero() {
         <div style={{ overflow: "hidden" }}>
           <div
             ref={line2Ref}
-            className="font-display leading-[0.85] text-red"
+            className="font-display leading-[0.85] text-yellow"
             style={{ fontSize: "clamp(80px, 12vw, 180px)" }}
           >
             ZWYCIĘSKIE
@@ -137,7 +137,7 @@ export default function Hero() {
           <div ref={ctaRef} className="flex items-center gap-6">
             <Link
               href="#uslugi"
-              className="inline-flex items-center gap-3 bg-red px-7 py-4 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:bg-red-dark"
+              className="inline-flex items-center gap-3 bg-yellow px-7 py-4 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:bg-yellow-dark"
             >
               Zobacz usługi
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -146,7 +146,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#about"
-              className="font-body text-[13px] font-medium uppercase tracking-[0.12em] text-ink-muted underline underline-offset-4 transition-colors hover:text-red"
+              className="font-body text-[13px] font-medium uppercase tracking-[0.12em] text-ink-muted underline underline-offset-4 transition-colors hover:text-yellow"
             >
               O nas
             </Link>
@@ -164,7 +164,7 @@ export default function Hero() {
           ].map((s) => (
             <div key={s.label}>
               <div className="font-display text-[48px] leading-none text-ink">
-                {s.value}<span className="text-red">{s.suffix}</span>
+                {s.value}<span className="text-yellow">{s.suffix}</span>
               </div>
               <div className="mt-1 font-body text-[11px] uppercase tracking-[0.15em] text-ink-muted">
                 {s.label}

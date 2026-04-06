@@ -78,8 +78,8 @@ export default function Services() {
     >
       <div className="mx-auto max-w-[1400px]">
         <div ref={headingRef} className="mb-20">
-          <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-red">
-            <span className="h-px w-8 bg-red" />
+          <p className="mb-4 flex items-center gap-4 font-body text-[11px] font-medium uppercase tracking-[0.3em] text-yellow">
+            <span className="h-px w-8 bg-yellow" />
             Co robimy
           </p>
           <div className="overflow-hidden">
@@ -102,17 +102,17 @@ export default function Services() {
               <div className="mb-8 font-display text-[80px] leading-none text-ink opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.12]">
                 {s.num}
               </div>
-              <div className="mb-6 h-px w-12 bg-red" />
+              <div className="mb-6 h-px w-12 bg-yellow" />
               <h3 className="mb-4 font-display text-[28px] leading-tight text-ink">
                 {s.title}
               </h3>
               <p className="mb-8 font-body text-[14px] font-light leading-[1.8] text-ink-muted">
                 {s.desc}
               </p>
-              <div className="font-body text-[12px] font-medium uppercase tracking-[0.15em] text-red">
+              <div className="font-body text-[12px] font-medium uppercase tracking-[0.15em] text-yellow">
                 {s.stat}
               </div>
-              <div className="mt-6 h-[2px] w-0 bg-red transition-all duration-500 group-hover:w-full" />
+              <div className="mt-6 h-[2px] w-0 bg-yellow transition-all duration-500 group-hover:w-full" />
             </article>
           ))}
         </div>
