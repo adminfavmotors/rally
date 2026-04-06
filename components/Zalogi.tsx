@@ -14,14 +14,29 @@ const teams = [
 
 export default function Zalogi() {
   const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = gridRef.current?.querySelectorAll(".team-card");
-      if (cards) {
-        gsap.set(cards, { opacity: 0, y: 50 });
-        gsap.to(cards, {
+      if (titleRef.current) {
+        gsap.set(titleRef.current, { yPercent: 110 });
+        gsap.to(titleRef.current, {
+          yPercent: 0,
+          duration: 1.1,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: titleRef.current.parentElement,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      }
+
+      const cards = gridRef.current?.children;
+      if (cards && cards.length > 0) {
+        gsap.set(Array.from(cards), { opacity: 0, y: 50 });
+        gsap.to(Array.from(cards), {
           opacity: 1,
           y: 0,
           duration: 0.9,
@@ -29,7 +44,7 @@ export default function Zalogi() {
           stagger: 0.12,
           scrollTrigger: {
             trigger: gridRef.current,
-            start: "top 75%",
+            start: "top 78%",
             once: true,
           },
         });
@@ -51,16 +66,18 @@ export default function Zalogi() {
             <span className="h-px w-8 bg-yellow" />
             Nasi kierowcy
           </p>
-          <h2 className="font-display text-[clamp(56px,8vw,120px)] leading-[0.88] text-ink">
-            NASZE ZAŁOGI
-          </h2>
+          <div className="overflow-hidden">
+            <div ref={titleRef} className="font-display text-[clamp(56px,8vw,120px)] leading-[0.88] text-ink">
+              NASZE ZAŁOGI
+            </div>
+          </div>
         </div>
 
         <div ref={gridRef} className="grid gap-px bg-border sm:grid-cols-2">
           {teams.map((t) => (
             <div
               key={t.num}
-              className="team-card group relative bg-bg-alt p-10 transition-colors duration-300 hover:bg-bg"
+              className="group relative bg-bg-alt p-10 transition-colors duration-300 hover:bg-bg"
             >
               <div
                 aria-hidden="true"
